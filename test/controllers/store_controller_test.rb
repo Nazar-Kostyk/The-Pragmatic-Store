@@ -8,6 +8,7 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
     assert_select 'main ul.catalog li', 3
     assert_select 'h2', 'Programming Ruby 1.9'
     assert_select '.price', /\$[,\d]+\.\d\d/
+    assert_select '.time', "#{Time.now.strftime("%d-%m-%Y %H:%M")}"
   end
 
 end
