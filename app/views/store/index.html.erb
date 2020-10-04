@@ -3,8 +3,8 @@
 <% end %>
 
 <h1>Your Pragmatic Catalog</h1>
-<% if (@counter > 5) %>
-  <h1>Opened - <%= pluralize(@counter, 'time', plural: 'times') %></h1>
+<% if (@counter && @counter > 3) %>
+  <h1 id="counter">Opened - <%= pluralize(@counter, 'time', plural: 'times') %></h1>
 <% end %>
 
 <ul class="catalog">
@@ -19,7 +19,8 @@
           </p>
           <div class="price">
             <%= number_to_currency(product.price) %>
-            <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+            <%= button_to 'Add to Cart', line_items_path(product_id: product),
+                remote: true %>
           </div>
         </li>
       <% end %>
