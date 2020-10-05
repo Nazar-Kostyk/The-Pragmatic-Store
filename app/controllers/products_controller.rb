@@ -46,8 +46,9 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
 
+        @counter = session[:counter]
         @products = Product.all.order(:title)
-        ActionCable.server.broadcast('products', { html: render_to_string('store/index', layout: false) })
+        ActionCable.server.broadcast('products', { html: render_to_string('store/index', layout: false), title: @product.title })
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }

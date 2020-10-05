@@ -13,7 +13,14 @@ consumer.subscriptions.create("ProductsChannel", {
     // Called when there's incoming data on the websocket for this channel
     const storeElement = document.querySelector("main.store")
     if (storeElement) {
-      storeElement.innerHTML = data.html
+      storeElement.innerHTML = data['html']
+      const ul = document.querySelectorAll('ul li h2')
+      for (let i = 0; i <= ul.length - 1; i++) {
+        if (ul[i].innerHTML == data['title']) {
+          ul[i].parentElement.className = "line-item-highlight"
+          break
+        }
+      }
     }
   }
 });

@@ -3,16 +3,17 @@
 <% end %>
 
 <h1>Your Pragmatic Catalog</h1>
-<% if (@counter && @counter > 3) %>
+<% if (@counter > 3) %>
   <h1 id="counter">Opened - <%= pluralize(@counter, 'time', plural: 'times') %></h1>
 <% end %>
 
 <ul class="catalog">
-  <% cache @products do %>  
+  <% cache @products do %>
     <% @products.each do |product| %>
       <% cache product do %>
         <li>
-          <%= image_tag(product.image_url) %>
+          <%= link_to image_tag(product.image_url), line_items_path(product_id: product), 
+              method: :post, remote: true %>
           <h2><%= product.title %></h2>
           <p>
             <%= sanitize(product.description) %>
