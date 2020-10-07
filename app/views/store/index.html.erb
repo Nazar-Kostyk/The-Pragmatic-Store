@@ -3,7 +3,7 @@
 <% end %>
 
 <h1>Your Pragmatic Catalog</h1>
-<% if (@counter > 3) %>
+<% if (@counter && @counter > 3) %>
   <h1 id="counter">Opened - <%= pluralize(@counter, 'time', plural: 'times') %></h1>
 <% end %>
 
