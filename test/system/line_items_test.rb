@@ -18,8 +18,7 @@ class LineItemsTest < ApplicationSystemTestCase
     fill_in "Product", with: @line_item.product_id
     click_on "Create Line item"
 
-    assert_text "Line item was successfully created"
-    click_on "Back"
+    assert_selector "h1", text: "Your Pragmatic Catalog"
   end
 
   test "updating a Line item" do
@@ -40,6 +39,6 @@ class LineItemsTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Line item was successfully destroyed"
+    assert_text "Line item was successfully destroyed."
   end
 end
