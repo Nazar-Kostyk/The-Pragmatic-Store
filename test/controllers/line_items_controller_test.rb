@@ -17,7 +17,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { product_id: products(:ruby).id }
+      post line_items_url, params: { line_item: { product_id: products(:ruby).id }}
     end
     follow_redirect!
 
@@ -27,7 +27,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item via ajax" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { product_id: products(:ruby).id },
+      post line_items_url, params: { line_item: { product_id: products(:ruby).id }},
       xhr: true
     end
     assert_response :success
@@ -60,21 +60,21 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should add all unique line items" do
     assert_difference('LineItem.count', 1) do
-      post line_items_url, params: { product_id: products(:ruby).id, cart_id: carts(:one).id }
+      post line_items_url, params: { line_item: { product_id: products(:ruby).id, cart_id: carts(:one).id }}
     end
     
     assert_difference('LineItem.count', 1) do
-      post line_items_url, params: { product_id: products(:one).id, cart_id: carts(:one).id }
+      post line_items_url, params: { line_item: { product_id: products(:one).id, cart_id: carts(:one).id }}
     end
   end
 
   test "should add one unique line_item" do
     assert_difference('LineItem.count', 1) do
-      post line_items_url, params: { product_id: products(:ruby).id, cart_id: carts(:one).id }
+      post line_items_url, params: { line_item: { product_id: products(:ruby).id, cart_id: carts(:one).id }}
     end
     
     assert_difference('LineItem.count', 0) do
-      post line_items_url, params: { product_id: products(:ruby).id, cart_id: carts(:one).id }
+      post line_items_url, params: { line_item: { product_id: products(:ruby).id, cart_id: carts(:one).id }}
     end
   end
 end
