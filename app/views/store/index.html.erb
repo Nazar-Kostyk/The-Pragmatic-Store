@@ -2,7 +2,7 @@
   <aside id="notice"><%= notice %></aside>
 <% end %>
 
-<h1>Your Pragmatic Catalog</h1>
+<h1><%= t('.title_html') %></h1>
 <% if (@counter && @counter > 3) %>
   <h1 id="counter">Opened - <%= pluralize(@counter, 'time', plural: 'times') %></h1>
 <% end %>
@@ -12,7 +12,7 @@
     <% @products.each do |product| %>
       <% cache product do %>
         <li>
-          <%= link_to image_tag(product.image_url), line_items_path(line_item: { product_id: product, cart_id: @cart}), 
+          <%= link_to image_tag(product.image_url), line_items_path(line_item: { product_id: product, cart_id: @cart}), locale: I18n.locale, 
               method: :post, remote: true %>
           <h2><%= product.title %></h2>
           <p>
@@ -20,7 +20,7 @@
           </p>
           <div class="price">
             <%= number_to_currency(product.price) %>
-            <%= button_to 'Add to Cart', line_items_path(line_item: { product_id: product, cart_id: @cart}),
+            <%= button_to t('.add_html'), line_items_path(line_item: { product_id: product, cart_id: @cart}), locale: I18n.locale,
                 remote: true %>
           </div>
         </li>
